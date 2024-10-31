@@ -758,6 +758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 4
-  groundCheckDistance: 0.1
+  groundCheckDistance: 0.01
   rb: {fileID: 1659592114}
   cameraTransform: {fileID: 869490260}
