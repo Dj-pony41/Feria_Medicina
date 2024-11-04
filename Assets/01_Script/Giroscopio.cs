@@ -6,6 +6,7 @@ public class Giroscopio : MonoBehaviour
 {
     public float sensitivity = 0.1f; // Control de sensibilidad
     public float smoothSpeed = 5f; // Control de suavidad del movimiento
+    public Vector3 customCenterRotation; // Rotación deseada de centrado (editable desde el Inspector)
 
     private Quaternion initialCameraRotation; // Rotación inicial de la cámara
 
@@ -37,5 +38,12 @@ public class Giroscopio : MonoBehaviour
             // Suaviza el movimiento hacia la rotación objetivo
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
         }
+    }
+
+    // Método para centrar la cámara en la rotación personalizada
+    public void CenterToCustomRotation()
+    {
+        Quaternion customRotation = Quaternion.Euler(customCenterRotation);
+        transform.rotation = customRotation; // Establece la rotación personalizada
     }
 }

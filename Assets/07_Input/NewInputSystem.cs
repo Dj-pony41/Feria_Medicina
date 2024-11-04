@@ -53,6 +53,15 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CenterCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""beed4edd-f9a6-4077-a033-c30ffb31d4d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,7 +189,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""39814283-2bff-47bc-8611-6cf5d48c2404"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -220,6 +229,28 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""235c4b3c-4c59-452b-853a-c8ded7761cb5"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CenterCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""853f643b-611d-4d70-98a5-15aafa7100d6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CenterCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +262,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_CenterCamera = m_Player.FindAction("CenterCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +327,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_CenterCamera;
     public struct PlayerActions
     {
         private @NewInputSystem m_Wrapper;
@@ -302,6 +335,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @CenterCamera => m_Wrapper.m_Player_CenterCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -320,6 +354,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @CenterCamera.started += instance.OnCenterCamera;
+            @CenterCamera.performed += instance.OnCenterCamera;
+            @CenterCamera.canceled += instance.OnCenterCamera;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -333,6 +370,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @CenterCamera.started -= instance.OnCenterCamera;
+            @CenterCamera.performed -= instance.OnCenterCamera;
+            @CenterCamera.canceled -= instance.OnCenterCamera;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -355,5 +395,6 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCenterCamera(InputAction.CallbackContext context);
     }
 }
