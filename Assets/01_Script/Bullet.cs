@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float lifeTime = 2f; // Duración del proyectil antes de desaparecer
-
+    public float lifeTime = 2f; 
     void Start()
     {
-        // Destruir el proyectil después de cierto tiempo
-        Destroy(gameObject, lifeTime);
+                Destroy(gameObject, lifeTime);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Destruir el proyectil al colisionar con cualquier objeto
-        Destroy(gameObject);
+                Destroy(gameObject);
     }
 }
