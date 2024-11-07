@@ -16,8 +16,7 @@ public class Character_Controller : MonoBehaviour
     public float bulletSpeed = 20f;
     NewInputSystem inputSystem;
 
-    private Giroscopio gyroScript; // Referencia al script de giroscopio
-
+    private Giroscopio gyroScript; 
     void Awake()
     {
         inputSystem = new NewInputSystem();
@@ -26,13 +25,11 @@ public class Character_Controller : MonoBehaviour
         inputSystem.Player.Movement.canceled += ctx => dir = Vector2.zero;
         inputSystem.Player.Shoot.performed += ctx => Shoot();
         inputSystem.Player.Jump.performed += ctx => Jump();
-        inputSystem.Player.CenterCamera.performed += ctx => CenterCamera(); // Asignar la acción de centrar la cámara
-    }
+        inputSystem.Player.CenterCamera.performed += ctx => CenterCamera();     }
 
     void Start()
     {
-        gyroScript = cameraTransform.GetComponent<Giroscopio>(); // Asigna el script de giroscopio de la cámara
-    }
+        gyroScript = cameraTransform.GetComponent<Giroscopio>();     }
 
     void OnEnable()
     {
@@ -89,12 +86,12 @@ public class Character_Controller : MonoBehaviour
         }
     }
 
-    // Método para centrar la cámara en la rotación personalizada
-    void CenterCamera()
+        void CenterCamera()
     {
         if (gyroScript != null)
         {
             gyroScript.CenterToCustomRotation();
         }
     }
+
 }
