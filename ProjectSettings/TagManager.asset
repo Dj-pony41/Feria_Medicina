@@ -9,6 +9,7 @@ TagManager:
   - Granada
   - Player2
   - Espada
+  - WhiteBloodCell
   layers:
   - Default
   - TransparentFX
