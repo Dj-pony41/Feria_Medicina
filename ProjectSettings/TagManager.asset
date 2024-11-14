@@ -5,11 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Enemy
-  - Granada
-  - Player2
-  - Espada
-  - WhiteBloodCell
   layers:
   - Default
   - TransparentFX

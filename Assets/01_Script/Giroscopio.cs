@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Giroscopio : MonoBehaviour
 {
-    public float sensitivity = 0.1f;     public float smoothSpeed = 5f;     public Vector3 customCenterRotation; 
-    private Quaternion initialCameraRotation; 
+    public float sensitivity = 0.1f; // Control de sensibilidad
+    public float smoothSpeed = 5f; // Control de suavidad del movimiento
+    public Vector3 customCenterRotation; // Rotación deseada de centrado (editable desde el Inspector)
+
+    private Quaternion initialCameraRotation; // Rotación inicial de la cámara
+
     void Start()
     {
-                if (SystemInfo.supportsGyroscope)
+        // Activa el giroscopio si está disponible
+        if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
-            initialCameraRotation = transform.rotation;         }
+            initialCameraRotation = transform.rotation; // Guarda la rotación inicial de la cámara
+        }
         else
         {
             Debug.LogWarning("Giroscopio no soportado en este dispositivo.");
@@ -22,17 +28,22 @@ public class Giroscopio : MonoBehaviour
     {
         if (Input.gyro.enabled)
         {
-                        Quaternion deviceRotation = Input.gyro.attitude;
+            // Obtiene la rotación del giroscopio
+            Quaternion deviceRotation = Input.gyro.attitude;
             deviceRotation = Quaternion.Euler(90f, 0f, 0f) * new Quaternion(-deviceRotation.x, -deviceRotation.y, deviceRotation.z, deviceRotation.w);
 
-                        Quaternion targetRotation = initialCameraRotation * deviceRotation;
+            // Calcula la rotación de la cámara usando la sensibilidad
+            Quaternion targetRotation = initialCameraRotation * deviceRotation;
 
-                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+            // Suaviza el movimiento hacia la rotación objetivo
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
         }
     }
 
-        public void CenterToCustomRotation()
+    // Método para centrar la cámara en la rotación personalizada
+    public void CenterToCustomRotation()
     {
         Quaternion customRotation = Quaternion.Euler(customCenterRotation);
-        transform.rotation = customRotation;     }
+        transform.rotation = customRotation; // Establece la rotación personalizada
+    }
 }
