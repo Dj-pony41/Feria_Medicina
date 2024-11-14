@@ -10,7 +10,6 @@ TagManager:
   - Player2
   - Espada
   - WhiteBloodCell
-  - Weapon
   layers:
   - Default
   - TransparentFX

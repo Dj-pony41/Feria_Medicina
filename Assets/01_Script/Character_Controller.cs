@@ -11,15 +11,12 @@ public class Character_Controller : MonoBehaviour
     Vector2 dir = Vector2.zero;
     public Rigidbody rb;
     public Transform cameraTransform;
-
-    public List<GameObject> weapons; // Lista de armas en la escena
-    private int currentWeaponIndex = 0; // Índice de arma actual
+    public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletSpeed = 20f;
     NewInputSystem inputSystem;
 
-    private Giroscopio gyroScript;
-
+    private Giroscopio gyroScript; 
     void Awake()
     {
         inputSystem = new NewInputSystem();
@@ -28,20 +25,11 @@ public class Character_Controller : MonoBehaviour
         inputSystem.Player.Movement.canceled += ctx => dir = Vector2.zero;
         inputSystem.Player.Shoot.performed += ctx => Shoot();
         inputSystem.Player.Jump.performed += ctx => Jump();
-        inputSystem.Player.CenterCamera.performed += ctx => CenterCamera();
-        inputSystem.Player.SwitchWeapon.performed += ctx => SwitchWeapon(); // Mapeo para cambiar de arma
-    }
+        inputSystem.Player.CenterCamera.performed += ctx => CenterCamera();     }
 
     void Start()
     {
-        gyroScript = cameraTransform.GetComponent<Giroscopio>();
-
-        // Inicializar el arma actual y ocultar el resto
-        for (int i = 0; i < weapons.Count; i++)
-        {
-            weapons[i].SetActive(i == currentWeaponIndex);
-        }
-    }
+        gyroScript = cameraTransform.GetComponent<Giroscopio>();     }
 
     void OnEnable()
     {
@@ -90,9 +78,6 @@ public class Character_Controller : MonoBehaviour
 
     void Shoot()
     {
-        if (weapons[currentWeaponIndex] == null) return;
-
-        GameObject bulletPrefab = weapons[currentWeaponIndex].GetComponent<weapon>().bulletPrefab; // Obtener el prefab de bala desde el arma actual
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         if (bulletRb != null)
@@ -101,7 +86,7 @@ public class Character_Controller : MonoBehaviour
         }
     }
 
-    void CenterCamera()
+        void CenterCamera()
     {
         if (gyroScript != null)
         {
@@ -109,15 +94,4 @@ public class Character_Controller : MonoBehaviour
         }
     }
 
-    void SwitchWeapon()
-    {
-        // Ocultar el arma actual
-        weapons[currentWeaponIndex].SetActive(false);
-
-        // Cambiar al siguiente índice de arma
-        currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
-
-        // Activar la nueva arma
-        weapons[currentWeaponIndex].SetActive(true);
-    }
 }
