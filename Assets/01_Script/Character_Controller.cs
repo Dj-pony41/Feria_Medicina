@@ -4,112 +4,131 @@ using UnityEngine;
 
 public class Character_Controller : MonoBehaviour
 {
-    public float speed = 4f;
-    public float jumpForce = 5f;
-    public float groundCheckDistance = 0.1f;
-    private bool isGrounded = true;
-    Vector2 dir = Vector2.zero;
-    public Rigidbody rb;
-    public Transform cameraTransform;
+	public float speed = 4f;
+	public float jumpForce = 5f;
+	public float groundCheckDistance = 0.1f;
+	private bool isGrounded = true;
+	Vector2 dir = Vector2.zero;
+	public Rigidbody rb;
+	public Transform cameraTransform;
 
-    public List<GameObject> weapons;     private int currentWeaponIndex = 0;     public Transform firePoint;
-    public float bulletSpeed = 20f;
-    NewInputSystem inputSystem;
+	public List<GameObject> weapons;
+	private int currentWeaponIndex = 0;
+	public Transform firePoint;
+	public float bulletSpeed = 20f;
 
-    private Giroscopio gyroScript;
+	NewInputSystem inputSystem;
+	private Giroscopio gyroScript;
 
-    void Awake()
-    {
-        inputSystem = new NewInputSystem();
+	public Animator animator;
 
-        inputSystem.Player.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
-        inputSystem.Player.Movement.canceled += ctx => dir = Vector2.zero;
-        inputSystem.Player.Shoot.performed += ctx => Shoot();
-        inputSystem.Player.Jump.performed += ctx => Jump();
-        inputSystem.Player.CenterCamera.performed += ctx => CenterCamera();
-        inputSystem.Player.SwitchWeapon.performed += ctx => SwitchWeapon();     }
+	void Awake()
+	{
+		inputSystem = new NewInputSystem();
 
-    void Start()
-    {
-        gyroScript = cameraTransform.GetComponent<Giroscopio>();
+		inputSystem.Player.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
+		inputSystem.Player.Movement.canceled += ctx => dir = Vector2.zero;
+		inputSystem.Player.Shoot.performed += ctx => Shoot();
+		inputSystem.Player.Jump.performed += ctx => Jump();
+		inputSystem.Player.CenterCamera.performed += ctx => CenterCamera();
+		inputSystem.Player.SwitchWeapon.performed += ctx => SwitchWeapon();
+	}
 
-                for (int i = 0; i < weapons.Count; i++)
-        {
-            weapons[i].SetActive(i == currentWeaponIndex);
-        }
-    }
+	void Start()
+	{
+		animator = GetComponent<Animator>(); // Asignar Animator automáticamente
+		gyroScript = cameraTransform.GetComponent<Giroscopio>();
 
-    void OnEnable()
-    {
-        inputSystem.Enable();
-    }
+		for (int i = 0; i < weapons.Count; i++)
+		{
+			weapons[i].SetActive(i == currentWeaponIndex);
+		}
+	}
 
-    void OnDisable()
-    {
-        inputSystem.Disable();
-    }
+	void OnEnable()
+	{
+		inputSystem.Enable();
+	}
 
-    void Update()
-    {
-        Movement();
-        GroundCheck();
-    }
+	void OnDisable()
+	{
+		inputSystem.Disable();
+	}
 
-    void Movement()
-    {
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+	void Update()
+	{
+		Movement();
+		GroundCheck();
+	}
 
-        forward.y = 0;
-        right.y = 0;
+	void Movement()
+	{
+		Vector3 forward = cameraTransform.forward;
+		Vector3 right = cameraTransform.right;
 
-        forward.Normalize();
-        right.Normalize();
+		forward.y = 0;
+		right.y = 0;
 
-        Vector3 moveDirection = (forward * dir.y + right * dir.x).normalized;
-        rb.velocity = new Vector3(moveDirection.x * speed, rb.velocity.y, moveDirection.z * speed);
-    }
+		forward.Normalize();
+		right.Normalize();
 
-    void Jump()
-    {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-    }
+		Vector3 moveDirection = (forward * dir.y + right * dir.x).normalized;
 
-    void GroundCheck()
-    {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
-    }
+		rb.velocity = new Vector3(moveDirection.x * speed, rb.velocity.y, moveDirection.z * speed);
 
-    void Shoot()
-    {
-        if (weapons[currentWeaponIndex] == null) return;
+		// Calcular y actualizar "Speed" en el Animator
+		float movementSpeed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+		animator.SetFloat("Speed", movementSpeed);
+		Debug.Log("Speed: " + movementSpeed);
+	}
 
-        GameObject bulletPrefab = weapons[currentWeaponIndex].GetComponent<weapon>().bulletPrefab;         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-        if (bulletRb != null)
-        {
-            bulletRb.velocity = firePoint.forward * bulletSpeed;
-        }
-    }
+	void Jump()
+	{
+		if (isGrounded)
+		{
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			isGrounded = false;
 
-    void CenterCamera()
-    {
-        if (gyroScript != null)
-        {
-            gyroScript.CenterToCustomRotation();
-        }
-    }
+			// Activar animación de salto
+			animator.SetTrigger("Jump");
+		}
+	}
 
-    void SwitchWeapon()
-    {
-                weapons[currentWeaponIndex].SetActive(false);
+	void GroundCheck()
+	{
+		isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+	}
 
-                currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+	void Shoot()
+	{
+		if (weapons[currentWeaponIndex] == null) return;
 
-                weapons[currentWeaponIndex].SetActive(true);
-    }
+		GameObject bulletPrefab = weapons[currentWeaponIndex].GetComponent<weapon>().bulletPrefab;
+		GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+		Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+		if (bulletRb != null)
+		{
+			bulletRb.velocity = firePoint.forward * bulletSpeed;
+		}
+
+		// Activar animación de disparo
+		animator.SetTrigger("Shoot");
+	}
+
+	void CenterCamera()
+	{
+		if (gyroScript != null)
+		{
+			gyroScript.CenterToCustomRotation();
+		}
+	}
+
+	void SwitchWeapon()
+	{
+		weapons[currentWeaponIndex].SetActive(false);
+
+		currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+
+		weapons[currentWeaponIndex].SetActive(true);
+	}
 }
