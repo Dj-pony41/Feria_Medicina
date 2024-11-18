@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+<<<<<<< HEAD
+=======
+  - Enemy
+  - Granada
+  - Player2
+  - Espada
+  - WhiteBloodCell
+  - Weapon
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   layers:
   - Default
   - TransparentFX

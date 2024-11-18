@@ -217,7 +217,11 @@ RectTransform:
   - {fileID: 259715464}
   - {fileID: 1577749884}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 7
+=======
+  m_RootOrder: 4
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -363,7 +367,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 8
+=======
+  m_RootOrder: 6
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259715463
 GameObject:
@@ -534,36 +542,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &722200835
-GameObject:
+--- !u!1001 &846817401
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 722200839}
-  - component: {fileID: 722200838}
-  - component: {fileID: 722200837}
-  - component: {fileID: 722200836}
-  m_Layer: 0
-  m_Name: Cube (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &722200836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722200835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
+<<<<<<< HEAD
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &722200837
@@ -864,6 +847,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.298203
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583078, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501227565781583079, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+      propertyPath: m_Name
+      value: GameObject
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97df8ef59c6849f4c91c7ed67ae1dde8, type: 3}
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
 --- !u!1 &1114040580
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +977,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114040580}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1119930489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1251,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
 --- !u!1 &1380590079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1347,11 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 5
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1577749883
 GameObject:
@@ -1397,8 +1442,11 @@ GameObject:
   - component: {fileID: 1659592116}
   - component: {fileID: 1659592115}
   - component: {fileID: 1659592114}
+<<<<<<< HEAD
   - component: {fileID: 1659592119}
   - component: {fileID: 1659592120}
+=======
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1443,7 +1491,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659592113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1495,6 +1543,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0000007111032, y: 1.06, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
+<<<<<<< HEAD
   m_Children:
   - {fileID: 869490260}
   - {fileID: 1846701885}
@@ -1562,7 +1611,69 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
   m_Children: []
-  m_Father: {fileID: 1659592118}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+--- !u!1001 &7759487787981872230
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7452987728548922785, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_Name
+      value: Linfocito T
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0046040798
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99998945
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -179.472
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792780369911176987, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 00418ce21f5cadc45b6f6906d9eb77fb, type: 3}
+>>>>>>> parent of 5cff16e (Revert "conflicto resueltoe en Scene_Rover.unity manteniendo cambio remoto")
