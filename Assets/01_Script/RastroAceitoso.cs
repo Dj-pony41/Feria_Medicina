@@ -2,24 +2,28 @@ using UnityEngine;
 
 public class RastroAceitoso : MonoBehaviour
 {
-    public float tiempoEntreRastros = 2f;     private float duracion;
+    public float tiempoEntreRastros = 2f;
+    private float duracion;
     private float tiempoVida;
     private Material material;
 
-    public Transform player;     public float speed = 3f;     public float damageAmount = 10f; 
-    private GlucoseManager glucoseManager; 
+    public Transform player;
+    public float speed = 3f;
+    public float damageAmount = 10f;
+    private GlucoseManager glucoseManager;
+
     void Start()
     {
         duracion = CalcularTiempoDuracion();
         tiempoVida = duracion;
 
-                Renderer renderer = GetComponent<Renderer>();
+        Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
             material = renderer.material = new Material(renderer.material);
         }
 
-                if (GameObject.FindGameObjectWithTag("Player") != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -33,23 +37,17 @@ public class RastroAceitoso : MonoBehaviour
 
     void Update()
     {
-                if (player != null)
+        if (player != null)
         {
+            // Mover el enemigo hacia el jugador
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
+
+            // Girar el enemigo para que mire hacia el jugador
+            transform.LookAt(player);
         }
 
-                tiempoVida -= Time.deltaTime;
-        if (material != null)
-        {
-            Color color = material.color;
-            color.a = Mathf.Clamp01(tiempoVida / duracion);
-            material.color = color;
-        }
-        if (tiempoVida <= 0)
-        {
-            Destroy(gameObject);
-        }
+       
     }
 
     private float CalcularTiempoDuracion()
@@ -61,7 +59,8 @@ public class RastroAceitoso : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && glucoseManager != null)
         {
-            glucoseManager.IncreaseGlucose(damageAmount);             Debug.Log("Daño aplicado al jugador: " + damageAmount);
+            glucoseManager.IncreaseGlucose(damageAmount);
+            Debug.Log("Daño aplicado al jugador: " + damageAmount);
         }
     }
 }

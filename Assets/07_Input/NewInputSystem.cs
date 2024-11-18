@@ -71,6 +71,15 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""af59295c-c53e-47cc-9341-6eeeb2de2a5d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -282,6 +291,17 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32ae59ca-ce0a-42c3-a457-e81208073ae4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -295,6 +315,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_CenterCamera = m_Player.FindAction("CenterCamera", throwIfNotFound: true);
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_CenterCamera;
     private readonly InputAction m_Player_SwitchWeapon;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @NewInputSystem m_Wrapper;
@@ -370,6 +392,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @CenterCamera => m_Wrapper.m_Player_CenterCamera;
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,6 +417,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @SwitchWeapon.started += instance.OnSwitchWeapon;
             @SwitchWeapon.performed += instance.OnSwitchWeapon;
             @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -413,6 +439,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @SwitchWeapon.started -= instance.OnSwitchWeapon;
             @SwitchWeapon.performed -= instance.OnSwitchWeapon;
             @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -437,5 +466,6 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCenterCamera(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

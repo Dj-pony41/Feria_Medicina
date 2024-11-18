@@ -18,13 +18,13 @@ public class DisparoSonido : MonoBehaviour
     private void OnEnable()
     {
         // Vincular el evento de disparo al sistema de input
-        playerInput.actions["Fire"].performed += OnFire;
+        playerInput.actions["Shoot"].performed += OnFire;
     }
 
     private void OnDisable()
     {
         // Desvincular el evento para evitar errores
-        playerInput.actions["Fire"].performed -= OnFire;
+        playerInput.actions["Shoot"].performed -= OnFire;
     }
 
     void OnFire(InputAction.CallbackContext context)

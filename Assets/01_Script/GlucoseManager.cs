@@ -3,41 +3,93 @@ using UnityEngine.UI;
 
 public class GlucoseManager : MonoBehaviour
 {
-    public Slider glucoseBar;              public Image fillImage;                public float maxGlucose = 100f;        public float minGlucose = 0f;          public float currentGlucose;      
+    public Slider glucoseBarLeft;  // Barra de glucosa izquierda
+    public Slider glucoseBarRight; // Barra de glucosa derecha
+    public Image fillImageLeft;    // Imagen de relleno para la barra izquierda
+    public Image fillImageRight;   // Imagen de relleno para la barra derecha
+    public float maxGlucose = 100f;
+    public float minGlucose = 0f;
+    public float currentGlucose;
+
     void Start()
     {
-                currentGlucose = 50f;
-        glucoseBar.maxValue = maxGlucose;
-        glucoseBar.minValue = minGlucose;
+        currentGlucose = 50f;
+
+        // Configuración de ambas barras de glucosa
+        if (glucoseBarLeft != null)
+        {
+            glucoseBarLeft.maxValue = maxGlucose;
+            glucoseBarLeft.minValue = minGlucose;
+        }
+
+        if (glucoseBarRight != null)
+        {
+            glucoseBarRight.maxValue = maxGlucose;
+            glucoseBarRight.minValue = minGlucose;
+        }
+
         UpdateGlucoseBar();
     }
 
-        public void IncreaseGlucose(float amount)
+    public void IncreaseGlucose(float amount)
     {
         currentGlucose += amount;
         currentGlucose = Mathf.Clamp(currentGlucose, minGlucose, maxGlucose);
         UpdateGlucoseBar();
     }
 
-        public void DecreaseGlucose(float amount)
+    public void DecreaseGlucose(float amount)
     {
         currentGlucose -= amount;
         currentGlucose = Mathf.Clamp(currentGlucose, minGlucose, maxGlucose);
         UpdateGlucoseBar();
     }
 
-        public void UpdateGlucoseBar()
+    public void UpdateGlucoseBar()
     {
-        glucoseBar.value = currentGlucose;
-
-                if (currentGlucose > 50)
+        if (glucoseBarLeft != null)
         {
-            fillImage.color = Color.red;         }
+            glucoseBarLeft.value = currentGlucose;
+        }
+
+        if (glucoseBarRight != null)
+        {
+            glucoseBarRight.value = currentGlucose;
+        }
+
+        // Actualizar el color de relleno para ambas barras
+        if (currentGlucose > 50)
+        {
+            if (fillImageLeft != null)
+            {
+                fillImageLeft.color = Color.red;
+            }
+            if (fillImageRight != null)
+            {
+                fillImageRight.color = Color.red;
+            }
+        }
         else if (currentGlucose == 50)
         {
-            fillImage.color = Color.green;         }
+            if (fillImageLeft != null)
+            {
+                fillImageLeft.color = Color.green;
+            }
+            if (fillImageRight != null)
+            {
+                fillImageRight.color = Color.green;
+            }
+        }
         else if (currentGlucose < 50)
         {
-            fillImage.color = Color.yellow;         }
+            if (fillImageLeft != null)
+            {
+                fillImageLeft.color = Color.yellow;
+            }
+            if (fillImageRight != null)
+            {
+                fillImageRight.color = Color.yellow;
+            }
+        }
     }
 }
