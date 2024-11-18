@@ -97,7 +97,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rotation: 197
+    - _Rotation: 128
     - _SkyExponent: 2
     - _SrcBlend: 1
     - _SunDisk: 2
@@ -118,4 +118,5 @@ Material:
     - _SkyTopColor: {r: 0.08742432, g: 0.11787318, b: 0.1544118, a: 1}
     - _SpecularColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SunTint: {r: 0.99607843, g: 0.99607843, b: 0.99607843, a: 1}
-    - _Tint: {r: 0.95283014, g: 0.95283014, b: 0.95283014, a: 0.7294118}
+    - _Tint: {r: 1, g: 0.82452834, b: 0.82452834, a: 0.7294118}
+  m_BuildTextureStacks: []
