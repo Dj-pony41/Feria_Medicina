@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player2
+  - Espada
+  - Enemy
+  - Granada
+  - Weapon
+  - Borde_mapa
+  - Limite
   layers:
   - Default
   - TransparentFX

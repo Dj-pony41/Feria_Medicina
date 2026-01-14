@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Helat : MonoBehaviour
+{
+    public float health = 100f;
+    public GameObject objectToDestroy;
+    public GameOverManager gameOverManager; // Referencia al GameOverManager para activar el Game Over
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player ha muerto");
+
+        if (objectToDestroy != null)
+        {
+            Destroy(objectToDestroy);
+        }
+        else
+        {
+            Debug.LogWarning("No se ha asignado el objeto a destruir.");
+        }
+
+        if (gameOverManager != null)
+        {
+            gameOverManager.OnCharacterDeath(); // Llamar al método para activar el Game Over
+        }
+    }
+}
